@@ -11,7 +11,7 @@ public class DbService {
     @Autowired
     private UserDao userDao;
 
-    public void createNewUser(User user) {
-        userDao.save(user);
+    public User createNewUser(User user) {
+        return userDao.save(user);
     }
 }
