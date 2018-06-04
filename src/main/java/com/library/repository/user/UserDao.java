@@ -1,5 +1,6 @@
-package com.library.domain.user;
+package com.library.repository.user;
 
+import com.library.domain.user.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
