@@ -10,25 +10,25 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
         @NamedQuery(
                 name = "Title.findByTitle",
-                query = "FROM TITLES WHERE TITLE_NAME = :TITLE"
+                query = "FROM Title WHERE titleName = :TITLE"
         ),
         @NamedQuery(
                 name = "Title.findPublishedBeforeYear",
-                query = "FROM TITLES WHERE YEAR_OF_PUBLICATION < :YEAR"
+                query = "FROM Title WHERE yearOfPublication < :YEAR_OF_PUBLICATION"
         )
 })
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "Title.findAllByTitle",
-                query = "SELECT * FROM TITLES WHERE TITLE_NAME = :TITLE",
+                query = "SELECT * FROM TITLES WHERE TITLE_NAME LIKE CONCAT ('%', :TITLE, '%')",
                 resultClass = Title.class
         ),
         @NamedNativeQuery(
                 name = "Title.findPublishedAfterYear",
-                query = "SELECT * FROM TITLES WHERE YEAR_OF_PUBLICATION > :YEAR"
+                query = "SELECT * FROM TITLES WHERE YEAR_OF_PUBLICATION > :YEAR_OF_PUBLICATION",
+                resultClass = Title.class
         )
 })
-
 
 @Entity
 @Table(name = "TITLES")
@@ -43,7 +43,7 @@ public class Title {
     private Long id;
 
     @NotNull
-    @Column(name = "TITLE_NAME")
+    @Column(name = "TITLE_NAME", unique = true)
     private String titleName;
 
     @NotNull
