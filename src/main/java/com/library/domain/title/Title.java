@@ -1,11 +1,14 @@
 package com.library.domain.title;
 
+import com.library.domain.book.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @NamedQueries({
         @NamedQuery(
@@ -53,4 +56,11 @@ public class Title {
     @NotNull
     @Column(name = "YEAR_OF_PUBLICATION")
     private int yearOfPublication;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "title",
+            targetEntity = Book.class)
+    private List<Book> books = new ArrayList<>();
 }
