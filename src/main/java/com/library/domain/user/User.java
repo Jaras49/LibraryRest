@@ -1,15 +1,17 @@
 package com.library.domain.user;
 
-import lombok.AllArgsConstructor;
+import com.library.domain.rent.Rent;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Entity
 @Table(name = "USERS")
@@ -31,5 +33,17 @@ public class User {
     @Column(name = "ACCOUNT_CREATION_DATE")
     @NotNull
     private Date accountCreationDate;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user",
+            targetEntity = Rent.class)
+    private List<Rent> rents = new ArrayList<>();
+
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accountCreationDate = new Date();
+    }
 
 }

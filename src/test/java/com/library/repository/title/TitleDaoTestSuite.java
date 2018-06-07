@@ -23,12 +23,12 @@ public class TitleDaoTestSuite {
     public void setUp() throws Exception {
 
         //Given
-        titleDao.save(new Title(1L, "JAVA CORE", "xyz", 2000));
-        titleDao.save(new Title(2L, "HEAD FIRST JAVA", "xyz", 2001));
-        titleDao.save(new Title(3L, "CLEAN CODE", "xyz", 2005));
-        titleDao.save(new Title(4L, "W PUSTYNI I W PUSZCZY", "SIENKIEWICZ", 1992));
-        titleDao.save(new Title(5L, "W PUSTYNI I W DESZCZU", "NOWAK", 1992));
-        titleDao.save(new Title(6L, "WITH DRAGONS AND W PUSTYNI", "JAROMIN", 2005));
+        //titleDao.save(new Title(1L, "JAVA CORE", "xyz", 2000));
+        //titleDao.save(new Title(2L, "HEAD FIRST JAVA", "xyz", 2001));
+        //titleDao.save(new Title(3L, "CLEAN CODE", "xyz", 2005));
+        //titleDao.save(new Title(4L, "W PUSTYNI I W PUSZCZY", "SIENKIEWICZ", 1992));
+        //titleDao.save(new Title(5L, "W PUSTYNI I W DESZCZU", "NOWAK", 1992));
+        //titleDao.save(new Title(6L, "WITH DRAGONS AND W PUSTYNI", "JAROMIN", 2005));
     }
 
     @After

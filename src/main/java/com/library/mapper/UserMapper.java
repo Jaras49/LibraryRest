@@ -10,7 +10,7 @@ import java.util.Date;
 public class UserMapper {
 
     public User mapToUser(UserDto userDto) {
-
-        return new User(userDto.getId(), userDto.getFirstName(), userDto.getLastName(), new Date());
+        //userDto.getId(), userDto.getFirstName(), userDto.getLastName(), new Date()
+        return new User("Mietek", "Jaromin");
     }
 }
