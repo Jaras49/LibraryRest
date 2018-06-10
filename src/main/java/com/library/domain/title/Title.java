@@ -2,7 +2,6 @@ package com.library.domain.title;
 
 import com.library.domain.book.Book;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -42,7 +41,7 @@ import java.util.Objects;
 public class Title {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "TITLE_ID")
     private Long id;
 
