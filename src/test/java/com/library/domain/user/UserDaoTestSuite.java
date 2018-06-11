@@ -25,11 +25,11 @@ public class UserDaoTestSuite {
     public void setUp() {
 
         //Given
-        User user = new User(1L, "Andrzej", "Nowak", new Date());
-        User user1 = new User(2L, "Andrzej", "Kowal", new Date());
+       // User user = new User(1L, "Andrzej", "Nowak", new Date());
+        //User user1 = new User(2L, "Andrzej", "Kowal", new Date());
 
-        userDao.save(user);
-        userDao.save(user1);
+        //userDao.save(user);
+        //userDao.save(user1);
     }
 
     @After

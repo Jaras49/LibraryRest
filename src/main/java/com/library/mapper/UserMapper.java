@@ -2,15 +2,13 @@ package com.library.mapper;
 
 import com.library.domain.user.User;
 import com.library.domain.user.UserDto;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
-@Service
+@Component
 public class UserMapper {
 
     public User mapToUser(UserDto userDto) {
 
-        return new User(userDto.getId(), userDto.getFirstName(), userDto.getLastName(), new Date());
+        return new User (userDto.getFirstName(), userDto.getLastName());
     }
 }

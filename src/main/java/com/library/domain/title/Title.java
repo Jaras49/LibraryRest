@@ -1,7 +1,7 @@
 package com.library.domain.title;
 
 import com.library.domain.book.Book;
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @NamedQueries({
         @NamedQuery(
@@ -33,10 +34,9 @@ import java.util.List;
         )
 })
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "TITLES")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 public class Title {
 
@@ -63,4 +63,29 @@ public class Title {
             mappedBy = "title",
             targetEntity = Book.class)
     private List<Book> books = new ArrayList<>();
+
+    public Title(String titleName, String author, int yearOfPublication) {
+
+        this.titleName = titleName;
+        this.author = author;
+        this.yearOfPublication = yearOfPublication;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Title)) return false;
+        Title title = (Title) o;
+        return yearOfPublication == title.yearOfPublication &&
+                Objects.equals(id, title.id) &&
+                Objects.equals(titleName, title.titleName) &&
+                Objects.equals(author, title.author) &&
+                Objects.equals(books, title.books);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, titleName, author, yearOfPublication, books);
+    }
 }
