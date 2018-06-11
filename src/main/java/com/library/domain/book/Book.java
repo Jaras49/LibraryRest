@@ -2,14 +2,11 @@ package com.library.domain.book;
 
 import com.library.domain.rent.Rent;
 import com.library.domain.title.Title;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "BOOKS")
 @Getter
@@ -20,7 +17,7 @@ public class Book {
     @Column(unique = true, name = "ID")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "TITLE_ID")
     private Title title;
 
@@ -36,8 +33,8 @@ public class Book {
         available, rented, lost, destroyed;
     }
 
-    public Book(Status status) {
-        this.status = status;
+    public Book() {
+        this.status = Status.available;
     }
 
     public void setRent(Rent rent) {

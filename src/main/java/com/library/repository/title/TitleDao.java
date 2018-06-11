@@ -28,6 +28,8 @@ public interface TitleDao extends CrudRepository<Title, Long> {
 
     List<Title> findByAuthor(String author);
 
+    Optional<Title> findByTitleNameAndAuthorAndYearOfPublication(String titleName, String author, int yearOfPublication);
+
     @Override
     Optional<Title> findById(Long id);
 
