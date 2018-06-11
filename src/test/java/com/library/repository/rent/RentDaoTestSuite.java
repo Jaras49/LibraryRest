@@ -28,10 +28,10 @@ public class RentDaoTestSuite {
 
         //Given
         Title title = new Title("JAVA CORE", "xyz", 2000);
-        Book book1 = new Book(Book.Status.lost);
-        Book book2 = new Book(Book.Status.available);
-        Book book3 = new Book(Book.Status.destroyed);
-        Book book4 = new Book(Book.Status.available);
+        Book book1 = new Book();
+        Book book2 = new Book();
+        Book book3 = new Book();
+        Book book4 = new Book();
 
         book1.setTitle(title);
         book2.setTitle(title);
