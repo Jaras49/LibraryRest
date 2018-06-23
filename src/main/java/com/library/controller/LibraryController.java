@@ -1,6 +1,6 @@
 package com.library.controller;
 
-
+import com.library.domain.rent.RentDto;
 import com.library.domain.title.TitleDto;
 import com.library.domain.user.UserDto;
 import com.library.mapper.TitleMapper;
@@ -22,7 +22,6 @@ public class LibraryController {
     @Autowired
     private TitleMapper titleMapper;
 
-
     @RequestMapping(method = RequestMethod.POST, value = "/createUser", consumes = APPLICATION_JSON_VALUE)
     public void createUser(@RequestBody UserDto userDto) {
         dbService.createNewUser(userMapper.mapToUser(userDto));
@@ -31,5 +30,10 @@ public class LibraryController {
     @RequestMapping(method = RequestMethod.POST, value = "/addBook", consumes = APPLICATION_JSON_VALUE)
     public void addBook(@RequestBody TitleDto titleDto) {
         dbService.addBook(titleMapper.mapToTitle(titleDto));
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/rent", consumes = APPLICATION_JSON_VALUE)
+    public void rentBooks(@RequestBody RentDto rentDto) {
+        dbService.rentBooks(rentDto.getUserId(), rentDto.getBooksId());
     }
 }
