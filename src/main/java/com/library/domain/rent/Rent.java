@@ -33,15 +33,12 @@ public class Rent {
     private LocalDate returnDate;
 
     @OneToMany(
-            //cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "rent",
             targetEntity = Book.class)
     private List<Book> rentedBooks = new ArrayList<>();
 
-    @ManyToOne(//cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-            cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
 

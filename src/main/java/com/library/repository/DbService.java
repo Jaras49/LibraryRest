@@ -31,4 +31,8 @@ public class DbService {
     public Rent rentBooks(Long userId, Long... bookId) {
         return rentRepository.rentBooks(userId, bookId);
     }
+
+    public void returnRent(Long rentId) {
+        rentRepository.returnRent(rentId);
+    }
 }

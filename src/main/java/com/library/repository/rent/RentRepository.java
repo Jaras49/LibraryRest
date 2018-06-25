@@ -39,6 +39,17 @@ public class RentRepository {
         return rentDao.save(rent);
     }
 
+    public void returnRent(Long rentId) {
+
+        Optional<Rent> rent = rentDao.findById(rentId);
+        rent.ifPresent(r -> r.getRentedBooks().forEach(book -> {
+            book.setRent(null);
+            book.setStatus(Book.Status.available);
+        }));
+        rentDao.deleteById(rentId);
+
+    }
+
     private LocalDate getReturnDate() {
         return LocalDate.now().plusMonths(2);
     }

@@ -36,4 +36,9 @@ public class LibraryController {
     public void rentBooks(@RequestBody RentDto rentDto) {
         dbService.rentBooks(rentDto.getUserId(), rentDto.getBooksId());
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/returnRent")
+    public void returnRent(@RequestParam Long rentId) {
+        dbService.returnRent(rentId);
+    }
 }
