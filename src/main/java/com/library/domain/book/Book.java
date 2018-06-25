@@ -17,7 +17,7 @@ public class Book {
     @Column(unique = true, name = "ID")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "TITLE_ID")
     private Title title;
 
@@ -43,6 +43,10 @@ public class Book {
 
     public void setTitle(Title title) {
         this.title = title;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
 
