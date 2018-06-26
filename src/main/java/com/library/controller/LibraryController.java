@@ -41,4 +41,9 @@ public class LibraryController {
     public void returnRent(@RequestParam Long rentId) {
         dbService.returnRent(rentId);
     }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/returnBook", consumes = APPLICATION_JSON_VALUE)
+    public void returnBook(@RequestBody RentDto rentDto) {
+        dbService.returnBooks(rentDto.getBooksId());
+    }
 }
