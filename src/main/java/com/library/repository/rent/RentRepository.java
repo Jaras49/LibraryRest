@@ -42,6 +42,7 @@ public class RentRepository {
                 if (optionalBook.isPresent()) {
                     Book book = optionalBook.get();
                     book.setRent(rent);
+                    book.setStatus(Book.Status.rented);
 
                     rent.getRentedBooks().add(book);
 
