@@ -4,14 +4,19 @@ import com.library.domain.book.Book;
 import com.library.domain.rent.Rent;
 import com.library.domain.title.Title;
 import com.library.domain.user.User;
+import com.library.exception.RentException;
 import com.library.repository.book.BookRepository;
 import com.library.repository.rent.RentRepository;
 import com.library.repository.user.UserDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DbService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DbService.class);
 
     @Autowired
     private UserDao userDao;
@@ -29,10 +34,25 @@ public class DbService {
     }
 
     public Rent rentBooks(Long userId, Long... bookId) {
-        return rentRepository.rentBooks(userId, bookId);
+
+        try {
+            return rentRepository.rentBooks(userId, bookId);
+        } catch (RentException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return null;
     }
 
     public void returnRent(Long rentId) {
-        rentRepository.returnRent(rentId);
+
+        try {
+            rentRepository.returnRent(rentId);
+        } catch (RentException e) {
+            LOGGER.error(RentException.INVALID_RENT_ID, e.getMessage(), e);
+        }
+    }
+
+    public void returnBooks(Long... bookID) {
+            rentRepository.returnBooks(bookID);
     }
 }

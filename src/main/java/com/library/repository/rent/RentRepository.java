@@ -81,7 +81,7 @@ public class RentRepository {
         }
     }
 
-    public void returnBook(Long... bookId) throws RentException {
+    public void returnBooks(Long... bookId) {
 
         for (Long id : bookId) {
             Optional<Book> optional = bookDao.findById(id);
@@ -95,12 +95,12 @@ public class RentRepository {
 
                 book.setRent(null);
 
+                rentDao.save(rent);
                 deleteEmptyRent(rent);
 
                 LOGGER.info("Returned book {}", id);
             } else {
-                LOGGER.error("Failed to return book");
-                throw new RentException(RentException.INVALID_BOOK_ID);
+                LOGGER.warn("No book with id {}", id);
             }
         }
     }
