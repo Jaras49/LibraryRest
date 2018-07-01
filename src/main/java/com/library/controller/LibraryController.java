@@ -62,4 +62,9 @@ public class LibraryController {
     public List<BookDto> findBooksByTitle(@RequestParam String title) {
         return bookMapper.mapToBookDtoList(dbService.findBooksByTitle(title));
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/findAvailableByTitle")
+    public List<BookDto> findAvailableBooksByTitle(@RequestParam String title) {
+        return bookMapper.mapToBookDtoList(dbService.findAvailableBooksByTitle(title));
+    }
 }

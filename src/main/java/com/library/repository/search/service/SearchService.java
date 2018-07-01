@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
@@ -28,6 +29,16 @@ public class SearchService {
             books.addAll(t.getBooks());
         }
         LOGGER.info("Found {} books with title: {}", books.size(), title);
+        return books;
+    }
+
+    public List<Book> findAvailableBooksByTitle(String title) {
+
+        List<Book> books = findBooksByTitle(title).stream()
+                .filter(book -> book.getStatus() == Book.Status.AVAILABLE)
+                .collect(Collectors.toList());
+        LOGGER.info("Found {} available books with title {}", books.size(), title);
+
         return books;
     }
 }

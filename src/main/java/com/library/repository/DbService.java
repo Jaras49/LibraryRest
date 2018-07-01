@@ -74,4 +74,8 @@ public class DbService {
     public List<Book> findBooksByTitle(String title) {
         return searchService.findBooksByTitle(title);
     }
+
+    public List<Book> findAvailableBooksByTitle(String title) {
+        return searchService.findAvailableBooksByTitle(title);
+    }
 }
