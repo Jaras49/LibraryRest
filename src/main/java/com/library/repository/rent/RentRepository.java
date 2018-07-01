@@ -42,7 +42,7 @@ public class RentRepository {
                 if (optionalBook.isPresent()) {
                     Book book = optionalBook.get();
                     book.setRent(rent);
-                    book.setStatus(Book.Status.rented);
+                    book.setStatus(Book.Status.RENTED);
 
                     rent.getRentedBooks().add(book);
 
@@ -71,7 +71,7 @@ public class RentRepository {
         if (rent.isPresent()) {
             rent.get().getRentedBooks().forEach(book -> {
                 book.setRent(null);
-                book.setStatus(Book.Status.available);
+                book.setStatus(Book.Status.AVAILABLE);
                 LOGGER.info("Returned book {}", book.getId());
             });
             rentDao.deleteById(rentId);
@@ -88,7 +88,7 @@ public class RentRepository {
             Optional<Book> optional = bookDao.findById(id);
             if (optional.isPresent()) {
                 Book book = optional.get();
-                book.setStatus(Book.Status.available);
+                book.setStatus(Book.Status.AVAILABLE);
 
                 Rent rent = book.getRent();
                 List<Book> rentedBooks = rent.getRentedBooks();

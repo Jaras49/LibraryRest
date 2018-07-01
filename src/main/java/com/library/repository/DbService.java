@@ -27,6 +27,7 @@ public class DbService {
     private RentRepository rentRepository;
 
     public User createNewUser(User user) {
+        LOGGER.info("Library user added");
         return userDao.save(user);
     }
 

@@ -30,11 +30,11 @@ public class Book {
     private Rent rent;
 
     public enum Status {
-        available, rented, lost, destroyed;
+        AVAILABLE, RENTED, LOST, DESTROYED;
     }
 
     public Book() {
-        this.status = Status.available;
+        this.status = Status.AVAILABLE;
     }
 
     public void setRent(Rent rent) {
