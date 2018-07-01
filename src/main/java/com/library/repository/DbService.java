@@ -8,11 +8,14 @@ import com.library.exception.BookRepositoryException;
 import com.library.exception.RentException;
 import com.library.repository.book.BookRepository;
 import com.library.repository.rent.RentRepository;
+import com.library.repository.search.service.SearchService;
 import com.library.repository.user.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DbService {
@@ -25,6 +28,8 @@ public class DbService {
     private BookRepository bookRepository;
     @Autowired
     private RentRepository rentRepository;
+    @Autowired
+    private SearchService searchService;
 
     public User createNewUser(User user) {
         LOGGER.info("Library user added");
@@ -64,5 +69,9 @@ public class DbService {
 
     public void returnBooks(Long... bookID) {
             rentRepository.returnBooks(bookID);
+    }
+
+    public List<Book> findBooksByTitle(String title) {
+        return searchService.findBooksByTitle(title);
     }
 }

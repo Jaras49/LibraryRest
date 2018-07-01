@@ -1,6 +1,6 @@
 package com.library.domain.book;
 
-import com.library.domain.title.Title;
+import com.library.domain.title.TitleDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class BookDto {
 
     private Long id;
-    private Title title;
+    private TitleDto title;
     private Book.Status status;
 }
