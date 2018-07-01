@@ -12,4 +12,5 @@ public class BookDto {
 
     private Long id;
     private Title title;
+    private Book.Status status;
 }

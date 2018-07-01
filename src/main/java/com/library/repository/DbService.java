@@ -4,6 +4,7 @@ import com.library.domain.book.Book;
 import com.library.domain.rent.Rent;
 import com.library.domain.title.Title;
 import com.library.domain.user.User;
+import com.library.exception.BookRepositoryException;
 import com.library.exception.RentException;
 import com.library.repository.book.BookRepository;
 import com.library.repository.rent.RentRepository;
@@ -31,6 +32,14 @@ public class DbService {
 
     public Book addBook(Title title) {
         return bookRepository.addBook(title);
+    }
+
+    public void updateBookStatus(Long id, Book.Status status) {
+        try {
+            bookRepository.updateBookStatus(id, status);
+        } catch (BookRepositoryException e) {
+            LOGGER.error(BookRepositoryException.ERR_INVALID_BOOK_ID, e.getMessage(), e);
+        }
     }
 
     public Rent rentBooks(Long userId, Long... bookId) {

@@ -1,5 +1,6 @@
 package com.library.controller;
 
+import com.library.domain.book.BookDto;
 import com.library.domain.rent.RentDto;
 import com.library.domain.title.TitleDto;
 import com.library.domain.user.UserDto;
@@ -45,5 +46,10 @@ public class LibraryController {
     @RequestMapping(method = RequestMethod.PUT, value = "/returnBook", consumes = APPLICATION_JSON_VALUE)
     public void returnBook(@RequestBody RentDto rentDto) {
         dbService.returnBooks(rentDto.getBooksId());
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/updateStatus", consumes = APPLICATION_JSON_VALUE)
+    public void updateBookStatus(@RequestBody BookDto bookDto) {
+        dbService.updateBookStatus(bookDto.getId(), bookDto.getStatus());
     }
 }

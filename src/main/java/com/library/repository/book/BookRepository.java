@@ -2,6 +2,7 @@ package com.library.repository.book;
 
 import com.library.domain.book.Book;
 import com.library.domain.title.Title;
+import com.library.exception.BookRepositoryException;
 import com.library.repository.title.TitleDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,5 +40,19 @@ public class BookRepository {
             LOGGER.info("Book " + book.getTitle().getTitleName() + " to the Library for the first time");
         }
         return book;
+    }
+
+    public void updateBookStatus(Long id, Book.Status status) throws BookRepositoryException {
+
+        Optional<Book> optionalBook = bookDao.findById(id);
+        if (optionalBook.isPresent()) {
+            Book book = optionalBook.get();
+            book.setStatus(status);
+            bookDao.save(book);
+            LOGGER.info("Updated book with id: {} status to: {}", id, status);
+        } else {
+            LOGGER.error("Failed to update book status");
+            throw new BookRepositoryException(BookRepositoryException.ERR_INVALID_BOOK_ID);
+        }
     }
 }
