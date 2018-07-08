@@ -9,13 +9,15 @@ import com.library.repository.user.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
+@Transactional
 public class RentRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RentRepository.class);

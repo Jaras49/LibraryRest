@@ -58,8 +58,7 @@ public class Title {
     private int yearOfPublication;
 
     @OneToMany(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             mappedBy = "title",
             targetEntity = Book.class)
     private List<Book> books = new ArrayList<>();
@@ -88,4 +87,5 @@ public class Title {
 
         return Objects.hash(id, titleName, author, yearOfPublication, books);
     }
+
 }

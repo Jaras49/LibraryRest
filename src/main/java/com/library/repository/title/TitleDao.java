@@ -34,6 +34,9 @@ public interface TitleDao extends CrudRepository<Title, Long> {
     Optional<Title> findById(Long id);
 
     @Override
+    List<Title> findAll();
+
+    @Override
     Title save(Title title);
 
 

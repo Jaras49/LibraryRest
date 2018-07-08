@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Rent.findRents",
+        query = "SELECT * FROM RENTS",
+        resultClass = Rent.class
+)
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "RENTS")
@@ -33,7 +39,7 @@ public class Rent {
     private LocalDate returnDate;
 
     @OneToMany(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             mappedBy = "rent",
             targetEntity = Book.class)
     private List<Book> rentedBooks = new ArrayList<>();
@@ -49,5 +55,16 @@ public class Rent {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Rent{" +
+                "id=" + id +
+                ", rentDate=" + rentDate +
+                ", returnDate=" + returnDate +
+                ", rentedBooks=" + rentedBooks +
+                ", user=" + user +
+                '}';
     }
 }
