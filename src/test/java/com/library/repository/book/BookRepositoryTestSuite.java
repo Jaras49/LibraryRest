@@ -73,6 +73,7 @@ public class BookRepositoryTestSuite extends AbstractRepositoryTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
+    @Test
     public void shouldThrowException() throws BookRepositoryException {
 
         expectedException.expect(BookRepositoryException.class);
