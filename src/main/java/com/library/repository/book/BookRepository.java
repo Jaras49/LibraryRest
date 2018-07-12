@@ -7,11 +7,13 @@ import com.library.repository.title.TitleDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
-@Component
+@Service
+@Transactional
 public class BookRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BookRepository.class);
