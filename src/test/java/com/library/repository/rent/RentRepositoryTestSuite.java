@@ -4,15 +4,10 @@ import com.library.domain.book.Book;
 import com.library.domain.rent.Rent;
 import com.library.domain.user.User;
 import com.library.exception.RentException;
-import com.library.repository.book.BookDao;
-import com.library.repository.user.UserDao;
+import com.library.repository.AbstractRepositoryTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit4.SpringRunner;
+
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -20,18 +15,8 @@ import java.util.stream.LongStream;
 
 import static org.junit.Assert.*;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@TestPropertySource("classpath:ddl_auto_none.properties")
-@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql.sql")
-public class RentRepositoryTestSuite {
+public class RentRepositoryTestSuite extends AbstractRepositoryTest {
 
-    @Autowired
-    private UserDao userDao;
-    @Autowired
-    private BookDao bookDao;
-    @Autowired
-    private RentDao rentDao;
     @Autowired
     private RentRepository rentRepository;
 
@@ -103,6 +88,7 @@ public class RentRepositoryTestSuite {
     @Test
     public void shouldThrowRentException() {
 
+        //When & Then
         try {
             rentRepository.rentBooks(100L, 5L, 6L);
         } catch (RentException e) {
