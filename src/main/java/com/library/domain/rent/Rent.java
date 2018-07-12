@@ -13,12 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Rent.findRents",
-        query = "SELECT * FROM RENTS",
-        resultClass = Rent.class
-)
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "RENTS")
