@@ -78,4 +78,68 @@ public class DbService {
     public List<Book> findAvailableBooksByTitle(String title) {
         return searchService.findAvailableBooksByTitle(title);
     }
+
+    public List<Book> findRentedBooks() {
+        return searchService.findRentedBooks();
+    }
+
+    public List<Book> findAvailableBooks() {
+        return searchService.findAvailableBooks();
+    }
+
+    public List<Book> findLostBooks() {
+        return searchService.findLostBooks();
+    }
+
+    public List<Book> findDestroyedBooks() {
+        return searchService.findDestroyedBooks();
+    }
+
+    public List<Book> findAllBooks() {
+        return searchService.findAllBooks();
+    }
+
+    public List<Title> findTitlesPublishedBeforeYear(int year) {
+        return searchService.findTitlesPublishedBeforeYear(year);
+    }
+
+    public List<Title> findAllTitlesByTitle(String title) {
+        return searchService.findAllTitlesByTitle(title);
+    }
+
+    public List<Title> findTitlesPublishedAfterYear(int year) {
+        return searchService.findTitlesPublishedAfterYear(year);
+    }
+
+    public List<Book> findBooksPublishedBeforeYear(int year) {
+        return searchService.findBooksPublishedBeforeYear(year);
+    }
+
+    public List<Book> findBooksPublishedAfterYear(int year) {
+        return searchService.findBooksPublishedAfterYear(year);
+    }
+
+    public List<Title> findTitlesByAuthor(String author) {
+        return searchService.findTitlesByAuthor(author);
+    }
+
+    public List<Book> findBooksByAuthor(String author) {
+        return searchService.findBooksByAuthor(author);
+    }
+
+    public List<Title> findAllTitles() {
+        return searchService.findAllTitles();
+    }
+
+    public List<User> findAllUsers() {
+        return searchService.findAllUsers();
+    }
+
+    public List<Rent> findAllRents() {
+        return searchService.findAllRents();
+    }
+
+    public List<Rent> findRentsWithExpiredReturnDate() {
+        return searchService.findRentsWithExpiredReturnDate();
+    }
 }
