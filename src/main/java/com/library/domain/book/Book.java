@@ -8,6 +8,24 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Book.findRented",
+                query = "FROM Book WHERE Status = 1"
+        ),
+        @NamedQuery(
+                name = "Book.findAvailable",
+                query = "FROM Book WHERE Status = 0"
+        ),
+        @NamedQuery(
+                name = "Book.findLost",
+                query = "FROM Book WHERE Status = 2"
+        ),
+        @NamedQuery(
+                name = "Book.findDestroyed",
+                query = "FROM Book WHERE Status = 3"
+        )
+})
 @Entity
 @Table(name = "BOOKS")
 @Getter
@@ -31,7 +49,7 @@ public class Book {
     private Rent rent;
 
     public enum Status {
-        AVAILABLE, RENTED, LOST, DESTROYED;
+        AVAILABLE, RENTED, LOST, DESTROYED
     }
 
     public Book() {
