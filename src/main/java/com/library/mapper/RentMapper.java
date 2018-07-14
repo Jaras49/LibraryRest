@@ -21,7 +21,7 @@ public class RentMapper {
     @Autowired
     private BookMapper bookMapper;
 
-    public List<OutgoingRentDto> mapToRentDtoList(List<Rent> rents) {
+    public List<OutgoingRentDto> mapToOutgoingRentDtoList(List<Rent> rents) {
 
         return rents.stream()
                 .map(rent -> new OutgoingRentDto(
