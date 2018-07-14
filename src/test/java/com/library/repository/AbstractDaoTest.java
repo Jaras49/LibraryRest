@@ -28,8 +28,8 @@ public abstract class AbstractDaoTest {
     @After
     public void tearDown() throws Exception {
         bookDao.deleteAll();
-        titleDao.deleteAll();
-        userDao.deleteAll();
         rentDao.deleteAll();
+        userDao.deleteAll();
+        titleDao.deleteAll();
     }
 }
