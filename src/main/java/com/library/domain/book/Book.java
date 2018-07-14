@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 @Table(name = "BOOKS")
@@ -47,6 +48,23 @@ public class Book {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) &&
+                Objects.equals(title, book.title) &&
+                status == book.status &&
+                Objects.equals(rent, book.rent);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, title, status, rent);
     }
 }
 
