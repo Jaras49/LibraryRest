@@ -18,12 +18,6 @@ public interface UserDao extends CrudRepository<User, Long> {
     @Override
     User save(User user);
 
-    List<User> findByLastName(String lastName);
-
-    List<User> findByFirstName(String firstName);
-
-    List<User> findByFirstNameAndLastName(String firstName, String lastName);
-
     @Override
     List<User> findAll();
 

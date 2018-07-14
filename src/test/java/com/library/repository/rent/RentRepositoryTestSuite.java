@@ -27,7 +27,6 @@ public class RentRepositoryTestSuite extends AbstractRepositoryTest {
         rentRepository.rentBooks(3L, 7L, 15L);
 
         //Then
-        assertEquals(1, userDao.findByFirstName("UserTest").size());
         assertEquals(3, userDao.findAll().size());
         assertEquals(3, rentDao.findAll().size());
 
