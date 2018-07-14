@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@NamedQuery(
+        name = "Rent.findRentsWithExpiredRentDate",
+        query = "From Rent WHERE returnDate < current_date"
+)
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "RENTS")

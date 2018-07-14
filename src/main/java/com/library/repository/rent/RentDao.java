@@ -1,6 +1,7 @@
 package com.library.repository.rent;
 
 import com.library.domain.rent.Rent;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,9 @@ import java.util.List;
 @Transactional
 @Repository
 public interface RentDao extends CrudRepository<Rent, Long> {
+
+    @Query(nativeQuery = true)
+    List<Rent> findRentsWithExpiredRentDate();
 
     @Override
     List<Rent> findAll();
