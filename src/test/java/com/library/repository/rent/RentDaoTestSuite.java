@@ -1,70 +1,36 @@
 package com.library.repository.rent;
 
-import com.library.domain.book.Book;
 import com.library.domain.rent.Rent;
-import com.library.domain.title.Title;
-import com.library.domain.user.User;
+import com.library.repository.AbstractDaoTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-public class RentDaoTestSuite {
-
-    @Autowired
-    private RentDao rentDao;
+public class RentDaoTestSuite extends AbstractDaoTest {
 
     @Test
-    public void testRent() {
+    public void shouldFindRentsWithExpiredReturnDate() {
 
         //Given
-        Title title = new Title("JAVA CORE", "xyz", 2000);
-        Book book1 = new Book();
-        Book book2 = new Book();
-        Book book3 = new Book();
-        Book book4 = new Book();
+        Rent rent = new Rent(LocalDate.now().plusMonths(2));
+        Rent rent1 = new Rent(LocalDate.now().plusMonths(1));
+        Rent rent2 = new Rent(LocalDate.now().minusMonths(1));
+        Rent rent3 = new Rent(LocalDate.now().minusMonths(3));
+        Rent rent4 = new Rent(LocalDate.now().minusMonths(4));
 
-        book1.setTitle(title);
-        book2.setTitle(title);
-        book3.setTitle(title);
-        book4.setTitle(title);
-
-        Rent rent = new Rent(LocalDate.of(2019, 12,15));
-
-        book1.setRent(rent);
-        book2.setRent(rent);
-        book3.setRent(rent);
-        book4.setRent(rent);
-
-        List<Book> list = new ArrayList<>();
-        list.add(book1);
-        list.add(book2);
-        list.add(book3);
-        list.add(book4);
-
-        User user = new User("Mieczysław", "Bolek");
-
-        user.getRents().add(rent);
-        rent.setUser(user);
-        rent.getRentedBooks().addAll(list);
-
-        title.getBooks().addAll(list);
-
+        rentDao.save(rent);
+        rentDao.save(rent1);
+        rentDao.save(rent2);
+        rentDao.save(rent3);
+        rentDao.save(rent4);
 
         //When
-        rentDao.save(rent);
-       //rentDao.deleteById(282L);
+        List<Rent> rentsWithExpiredRentDate = rentDao.findRentsWithExpiredRentDate();
 
         //Then
-
+        assertEquals(3, rentsWithExpiredRentDate.size());
     }
 }

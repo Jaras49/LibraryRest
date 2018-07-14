@@ -6,7 +6,26 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Book.findRented",
+                query = "FROM Book WHERE Status = 1"
+        ),
+        @NamedQuery(
+                name = "Book.findAvailable",
+                query = "FROM Book WHERE Status = 0"
+        ),
+        @NamedQuery(
+                name = "Book.findLost",
+                query = "FROM Book WHERE Status = 2"
+        ),
+        @NamedQuery(
+                name = "Book.findDestroyed",
+                query = "FROM Book WHERE Status = 3"
+        )
+})
 @Entity
 @Table(name = "BOOKS")
 @Getter
@@ -30,7 +49,7 @@ public class Book {
     private Rent rent;
 
     public enum Status {
-        AVAILABLE, RENTED, LOST, DESTROYED;
+        AVAILABLE, RENTED, LOST, DESTROYED
     }
 
     public Book() {
@@ -47,6 +66,23 @@ public class Book {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) &&
+                Objects.equals(title, book.title) &&
+                status == book.status &&
+                Objects.equals(rent, book.rent);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, title, status, rent);
     }
 }
 

@@ -34,8 +34,8 @@ public class User {
     @NotNull
     private Date accountCreationDate;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+    @OneToMany(
+            fetch = FetchType.EAGER,
             mappedBy = "user",
             targetEntity = Rent.class)
     private List<Rent> rents = new ArrayList<>();
@@ -45,5 +45,4 @@ public class User {
         this.lastName = lastName;
         this.accountCreationDate = new Date();
     }
-
 }
