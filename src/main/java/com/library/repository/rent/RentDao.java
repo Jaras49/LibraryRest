@@ -13,7 +13,7 @@ import java.util.List;
 public interface RentDao extends CrudRepository<Rent, Long> {
 
     @Query(nativeQuery = true)
-    List<Rent> findRentsWithExpiredRentDate();
+    List<Rent> findRentsWithExpiredReturnDate();
 
     @Override
     List<Rent> findAll();

@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @NamedQuery(
-        name = "Rent.findRentsWithExpiredRentDate",
+        name = "Rent.findRentsWithExpiredReturnDate",
         query = "From Rent WHERE returnDate < current_date"
 )
 

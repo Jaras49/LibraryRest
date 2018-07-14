@@ -28,7 +28,7 @@ public class RentDaoTestSuite extends AbstractDaoTest {
         rentDao.save(rent4);
 
         //When
-        List<Rent> rentsWithExpiredRentDate = rentDao.findRentsWithExpiredRentDate();
+        List<Rent> rentsWithExpiredRentDate = rentDao.findRentsWithExpiredReturnDate();
 
         //Then
         assertEquals(3, rentsWithExpiredRentDate.size());
