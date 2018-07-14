@@ -11,16 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@NamedQueries({
-        @NamedQuery(
-                name = "Title.findByTitle",
-                query = "FROM Title WHERE titleName = :TITLE"
-        ),
+@NamedQueries(
         @NamedQuery(
                 name = "Title.findPublishedBeforeYear",
                 query = "FROM Title WHERE yearOfPublication < :YEAR_OF_PUBLICATION"
         )
-})
+)
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "Title.findAllByTitle",
@@ -30,6 +26,11 @@ import java.util.Objects;
         @NamedNativeQuery(
                 name = "Title.findPublishedAfterYear",
                 query = "SELECT * FROM TITLES WHERE YEAR_OF_PUBLICATION > :YEAR_OF_PUBLICATION",
+                resultClass = Title.class
+        ),
+        @NamedNativeQuery(
+                name = "Title.findAllByAuthor",
+                query = "SELECT * FROM TITLES WHERE AUTHOR LIKE CONCAT ('%', :AUTHOR, '%')",
                 resultClass = Title.class
         )
 })

@@ -15,9 +15,6 @@ import java.util.Optional;
 public interface TitleDao extends CrudRepository<Title, Long> {
 
     @Query
-    Optional<Title> findByTitle(@Param("TITLE") String title);
-
-    @Query
     List<Title> findPublishedBeforeYear(@Param("YEAR_OF_PUBLICATION") int year);
 
     @Query(nativeQuery = true)
@@ -26,7 +23,8 @@ public interface TitleDao extends CrudRepository<Title, Long> {
     @Query(nativeQuery = true)
     List<Title> findPublishedAfterYear(@Param("YEAR_OF_PUBLICATION") int year);
 
-    List<Title> findByAuthor(String author);
+    @Query(nativeQuery = true)
+    List<Title> findAllByAuthor(@Param("AUTHOR") String author);
 
     Optional<Title> findByTitleNameAndAuthorAndYearOfPublication(String titleName, String author, int yearOfPublication);
 
@@ -38,6 +36,4 @@ public interface TitleDao extends CrudRepository<Title, Long> {
 
     @Override
     Title save(Title title);
-
-
 }
