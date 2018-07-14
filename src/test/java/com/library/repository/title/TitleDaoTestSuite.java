@@ -25,18 +25,14 @@ public class TitleDaoTestSuite extends AbstractDaoTest {
     public void shouldFindPublishedBeforeYear() {
 
         //When
-        System.out.println("====================================>TITLES:END " + titleDao.findAll().size());
-        System.out.println("====================================>BOOKS:END " + bookDao.findAll().size());
         List<Title> publishedBeforeYear = titleDao.findPublishedBeforeYear(2000);
-
-        publishedBeforeYear.forEach(title -> System.out.println(title.getYearOfPublication()));
 
         //then
         assertEquals(2, publishedBeforeYear.size());
     }
 
     @Test
-    public void shouldFindPublishedAftherYear() {
+    public void shouldFindPublishedAfterYear() {
 
         //When
         List<Title> publishedAfterYear = titleDao.findPublishedAfterYear(2000);
