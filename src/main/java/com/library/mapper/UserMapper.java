@@ -25,4 +25,9 @@ public class UserMapper {
                         user.getLastName()))
                 .collect(toList());
     }
+
+    public UserDto mapToUserDto(User user) {
+
+        return new UserDto(user.getId(), user.getFirstName(), user.getLastName());
+    }
 }
