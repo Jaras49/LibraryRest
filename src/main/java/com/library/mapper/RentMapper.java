@@ -2,7 +2,7 @@ package com.library.mapper;
 
 import com.library.domain.book.Book;
 import com.library.domain.book.BookDto;
-import com.library.domain.book.OutgoingRentDto;
+import com.library.domain.rent.OutgoingRentDto;
 import com.library.domain.rent.Rent;
 import com.library.domain.user.User;
 import com.library.domain.user.UserDto;

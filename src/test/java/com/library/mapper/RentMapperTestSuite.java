@@ -1,6 +1,6 @@
 package com.library.mapper;
 
-import com.library.domain.book.OutgoingRentDto;
+import com.library.domain.rent.OutgoingRentDto;
 import com.library.domain.rent.Rent;
 import com.library.domain.user.UserDto;
 import org.junit.Test;

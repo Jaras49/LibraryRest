@@ -1,5 +1,6 @@
-package com.library.domain.book;
+package com.library.domain.rent;
 
+import com.library.domain.book.BookDto;
 import com.library.domain.user.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
