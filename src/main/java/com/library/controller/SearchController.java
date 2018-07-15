@@ -1,7 +1,7 @@
 package com.library.controller;
 
 import com.library.domain.book.BookDto;
-import com.library.domain.book.OutgoingRentDto;
+import com.library.domain.rent.OutgoingRentDto;
 import com.library.domain.title.TitleDto;
 import com.library.domain.user.UserDto;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -100,7 +100,7 @@ public class SearchController extends AbstractController {
         return rentMapper.mapToOutgoingRentDtoList(dbService.findAllRents());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "findRentsWithExpiredReturn")
+    @RequestMapping(method = RequestMethod.GET, value = "/findRentsWithExpiredReturn")
     public List<OutgoingRentDto> findRentsWithExpiredReturnDate() {
         return rentMapper.mapToOutgoingRentDtoList(dbService.findRentsWithExpiredReturnDate());
     }
