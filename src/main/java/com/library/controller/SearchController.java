@@ -4,6 +4,7 @@ import com.library.domain.book.BookDto;
 import com.library.domain.rent.OutgoingRentDto;
 import com.library.domain.title.TitleDto;
 import com.library.domain.user.UserDto;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ public class SearchController extends AbstractController {
         return bookMapper.mapToBookDtoList(dbService.findAvailableBooksByTitle(title));
     }
 
+    @Secured("ROLE_STAFF")
     @RequestMapping(method = RequestMethod.GET, value = "/findRented")
     public List<BookDto> findRentedBooks() {
         return bookMapper.mapToBookDtoList(dbService.findRentedBooks());
@@ -35,11 +37,13 @@ public class SearchController extends AbstractController {
         return bookMapper.mapToBookDtoList(dbService.findAvailableBooks());
     }
 
+    @Secured("ROLE_STAFF")
     @RequestMapping(method = RequestMethod.GET, value = "/findLostBooks")
     public List<BookDto> findLostBooks() {
         return bookMapper.mapToBookDtoList(dbService.findLostBooks());
     }
 
+    @Secured("ROLE_STAFF")
     @RequestMapping(method = RequestMethod.GET, value = "/findDestroyedBooks")
     public List<BookDto> findDestroyedBooks() {
         return bookMapper.mapToBookDtoList(dbService.findDestroyedBooks());
@@ -90,16 +94,19 @@ public class SearchController extends AbstractController {
         return titleMapper.mapToTitleDtoList(dbService.findAllTitles());
     }
 
+    @Secured("ROLE_STAFF")
     @RequestMapping(method = RequestMethod.GET, value = "/findAllUsers")
     public List<UserDto> findAllUsers() {
         return userMapper.mapToUserDtoList(dbService.findAllUsers());
     }
 
+    @Secured("ROLE_STAFF")
     @RequestMapping(method = RequestMethod.GET, value = "/findAllRents")
     public List<OutgoingRentDto> findAllRents() {
         return rentMapper.mapToOutgoingRentDtoList(dbService.findAllRents());
     }
 
+    @Secured("ROLE_STAFF")
     @RequestMapping(method = RequestMethod.GET, value = "/findRentsWithExpiredReturn")
     public List<OutgoingRentDto> findRentsWithExpiredReturnDate() {
         return rentMapper.mapToOutgoingRentDtoList(dbService.findRentsWithExpiredReturnDate());
