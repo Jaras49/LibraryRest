@@ -37,7 +37,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         try {
             UserCredentials credentials = new ObjectMapper().readValue(request.getInputStream(), UserCredentials.class);
 
-            LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> AUTHENTICATING");
+            LOGGER.info("Attempting authentication of user {}", credentials.getUsername());
             LOGGER.info(credentials.getUsername() + " " + credentials.getPassword());
 
             return authenticationManager.authenticate(
@@ -48,20 +48,22 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             );
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            LOGGER.error("Failed to get login credentials from request body", e);
         }
+        return null;
     }
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
 
-        authResult.getAuthorities().forEach(n -> LOGGER.info(">>>>>>>>>>>>>>>>> " + n.getAuthority()));
+        LOGGER.info("User {} authenticated", ((User)(authResult.getPrincipal())).getUsername());
+        LOGGER.info("Generating JWT token");
 
         String token = JWT.create().withSubject(((User) (authResult.getPrincipal())).getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.EXPIIRATION_TIME))
+                .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()));
 
         response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
-
+        LOGGER.info("JWT token generated");
     }
 }
