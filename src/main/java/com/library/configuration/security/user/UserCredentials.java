@@ -1,7 +1,5 @@
 package com.library.configuration.security.user;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -35,15 +33,9 @@ public class UserCredentials implements UserDetails {
     @Column(name = "AUTHORITIES")
     private Collection<? extends GrantedAuthority> authorities;
 
-    @JsonCreator
-    public UserCredentials(@JsonProperty("username") String username, @JsonProperty("password") String password) {
-        this.username = username;
-        this.password = password;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
