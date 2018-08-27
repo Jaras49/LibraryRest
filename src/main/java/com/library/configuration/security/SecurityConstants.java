@@ -4,6 +4,6 @@ public interface SecurityConstants {
 
     String TOKEN_PREFIX = "Bearer ";
     String HEADER_STRING = "Authorization";
-    long EXPIIRATION_TIME = 864_000_000;
+    long EXPIRATION_TIME = 60_000;
     String SECRET = "SECRETxyz";
 }
